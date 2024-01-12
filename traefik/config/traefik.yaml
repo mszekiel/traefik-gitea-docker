@@ -33,6 +33,6 @@ entryPoints:
 certificatesresolvers:
   tlsresolver:
     acme:
-      email: mail@dev-v.pl
+      email: mail@domain.com
       tlschallenge: true
       storage: /letsencrypt/acme.json

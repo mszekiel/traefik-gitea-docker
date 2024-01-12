@@ -28,7 +28,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.gitea.rule=Host(`git.dev-v.pl`)"
+      - "traefik.http.routers.gitea.rule=Host(`git.domain.com`)"
       - "traefik.http.services.gitea-service.loadbalancer.server.port=3000"
       - "traefik.tcp.routers.gitea-ssh.rule=HostSNI(`*`)"
       - "traefik.tcp.routers.gitea-ssh.service=gitea-ssh"
