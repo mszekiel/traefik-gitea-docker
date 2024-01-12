@@ -1,0 +1,38 @@
+global:
+  sendAnonymousUsage: true
+
+api:
+  dashboard: false
+
+providers:
+  docker:
+    network: traefik
+    watch: true
+    exposedByDefault: false
+
+log:
+  level: DEBUG
+
+entryPoints:
+  web:
+    address: ":80"
+    http:
+      redirections:
+        entryPoint:
+          to: websecure
+          scheme: https
+  websecure:
+    asDefault: true
+    address: ":443"
+    http:
+      tls:
+        certresolver: tlsresolver
+  ssh:
+    address: ":222"
+
+certificatesresolvers:
+  tlsresolver:
+    acme:
+      email: mail@dev-v.pl
+      tlschallenge: true
+      storage: /letsencrypt/acme.json

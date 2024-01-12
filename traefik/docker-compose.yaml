@@ -1,0 +1,21 @@
+version: "3"
+
+networks:
+  traefik:
+    name: traefik
+    external: true
+
+services:
+  traefik:
+    image: traefik:3.0
+    ports:
+      - 80:80
+      - 443:443
+      - 222:222
+    networks:
+      - traefik
+    volumes:
+      - $XDG_RUNTIME_DIR/docker.sock:/var/run/docker.sock
+      - ./letsencrypt:/letsencrypt
+      - ./config/traefik.yaml:/etc/traefik/traefik.yaml
+      - ./config/usersfile:/usersfile
